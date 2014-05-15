@@ -1,0 +1,28 @@
+{
+    "title": "RSS feed",
+    "version": "1.00",
+    "name": "Rss",
+    "description": "RSS.",
+    "author": "ImpressPages",
+    "options": [
+        {
+            "label": "RSS URL",
+            "name": "rssUrl",
+            "type": "text",
+            "default": "rss"
+        },
+        {
+            "label": "RSS channel title",
+            "name": "channelTitle",
+            "type": "text",
+            "default": "RSS Feed"
+        },
+        {
+            "label": "RSS channel description",
+            "name": "channelDescription",
+            "type": "textarea",
+            "default": ""
+        }
+
+    ]
+}
