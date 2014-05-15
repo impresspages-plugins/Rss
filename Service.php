@@ -12,8 +12,8 @@ class Service{
 
         $xml.= '<title>'.$data['title'].'</title>';
         $xml.= '<link>'.$data['url'].'</link>';
-        $xml.= '<description>Website description</description>';
-        $xml.= '<language>en-us</language>';
+        $xml.= '<description>'.$data['description'].'</description>';
+        $xml.= '<language>'.$data['language'].'</language>';
 
         if (!empty($data['items'])){
             foreach ($data['items'] as $item){
