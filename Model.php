@@ -34,6 +34,8 @@ class Model
 
             if (isset($pageContent['text']) && ($pageContent['text'])){
                 $item['url'] = ipHomeUrl().ipPage($pageId)->getUrlPath();
+
+
                 $item['description'] = $pageContent['text'];
 
                 if (isset($pageContent['heading']) && $pageContent['heading']){
@@ -60,6 +62,11 @@ class Model
         $revisionId = self::getRevisionId($pageId);
         if ($revisionId) {
             $pageContent = self::getWidgetsForRss($revisionId);
+
+            if (isset($pageContent['text']) && (!ipGetOption('Rss.removeXml'))){
+                $pageContent['text'] = self::addCdata($pageContent['text']);
+            }
+
             return $pageContent;
         } else {
             return false;
@@ -127,12 +134,21 @@ class Model
             $cnt++;
         }
 
-        $text =  self::html2text($text);
+        if (ipGetOption('Rss.removeHtml')){
+            $text =  self::html2text($text);
+        }
 
         $content['heading'] = $heading;
         $content['text'] = $text;
 
         return $content;
+    }
+
+    private static function addCdata($text){
+
+        $text = "<![CDATA[\r\n".$text."\n]]>";
+
+        return $text;
     }
 
     private static function hasLeadBreakWidget($allWidgets){
@@ -166,6 +182,7 @@ class Model
         }else{
             $title = false;
         }
+
         $title =  self::html2text($title);
 
         return $title;
@@ -179,7 +196,9 @@ class Model
             $text = false;
         }
 
-        $text =  self::html2text($text);
+        if (ipGetOption('Rss.removeHtml')){
+            $text =  self::html2text($text);
+        }
 
         return $text;
     }

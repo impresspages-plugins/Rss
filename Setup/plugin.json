@@ -22,7 +22,14 @@
             "name": "channelDescription",
             "type": "textarea",
             "default": ""
+        },
+        {
+            "label": "Remove HTML tags",
+            "name": "removeHtml",
+            "type": "checkbox",
+            "default": "1"
         }
+
 
     ]
 }
