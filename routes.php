@@ -10,8 +10,10 @@ namespace Plugin\Rss;
 $routes[ipGetOption('Rss.rssUrl').'{/languageCode}'] = array(
     'name' => 'Rss',
     'action' =>
-        function($languageCode = 'en') {
-
+        function($languageCode = null) {
+            if ($languageCode == null) {
+                $languageCode = ipContent()->getCurrentLanguage()->getCode();
+            }
             $data = array(
                 'title' => ipGetOption('Rss.channelTitle'),
                 'url' => ipRouteUrl('Rss'),
