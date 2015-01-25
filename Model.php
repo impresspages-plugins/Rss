@@ -23,7 +23,8 @@ class Model
 
         $sql = "SELECT p.id FROM " . ipTable('page') . " AS p
             LEFT JOIN " . ipTable('page_storage') . " AS s ON p.id=s.pageId
-            WHERE s.`key`='rssFeed' AND s.`value`=1 AND p.`languageCode`='" . esc($languageCode) . "'";
+            WHERE s.`key`='rssFeed' AND s.`value`=1 AND p.`languageCode`='" . esc($languageCode) . "'
+            ORDER BY p.`createdAt` DESC";
 
         $rssPageIds = ipDb()->fetchColumn($sql);
 
